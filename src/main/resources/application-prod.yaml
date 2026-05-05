@@ -4,14 +4,15 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
   mail:
-    port: 465
+    port: 587
     username: ${SPRING_MAIL_USERNAME}
     password: ${SPRING_MAIL_PASSWORD}
     properties:
       mail:
         smtp:
-          ssl:
+          starttls:
             enable: true
+            required: true
 brevo:
   from:
     email: ${BREVO_FROM_EMAIL}
