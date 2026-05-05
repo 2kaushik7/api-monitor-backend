@@ -106,9 +106,12 @@ class EndpointServiceImplTest {
 
     @Test
     void deleteEndpoint_callsDeleteById() {
+        when(endpointRepository.findById(endpointId)).thenReturn(Optional.of(endpoint));
+
         endpointService.deleteEndpoint(endpointId);
 
-        verify(endpointRepository, times(1)).deleteById(endpointId);
+        verify(alertRepository, times(1)).deleteByEndpoint(endpoint);
+        verify(endpointRepository, times(1)).delete(endpoint);
     }
 
     // --- updateEndpoint ---

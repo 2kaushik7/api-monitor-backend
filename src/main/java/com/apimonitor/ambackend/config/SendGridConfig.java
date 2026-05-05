@@ -1,4 +1,14 @@
 package com.apimonitor.ambackend.config;
 
-// Brevo email is configured via spring.mail.* properties in application.yaml.
-// JavaMailSender is auto-configured by Spring Boot — no manual bean needed.
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@Configuration
+public class SendGridConfig {
+
+    @Bean
+    public WebClient webClient() {
+        return WebClient.builder().build();
+    }
+}
