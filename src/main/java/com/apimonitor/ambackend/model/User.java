@@ -22,4 +22,9 @@ public class User {
     private String email;
 
     private String name;
+
+    @Column(nullable = false)
+    private String plan = "FREE";
+
+    private String stripeCustomerId;
 }

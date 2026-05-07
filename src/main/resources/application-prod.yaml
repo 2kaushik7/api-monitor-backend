@@ -8,3 +8,9 @@ brevo:
     email: ${BREVO_FROM_EMAIL}
   api:
     key: ${BREVO_API_KEY}
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+  pro-price-id: ${STRIPE_PRO_PRICE_ID}
+  success-url: ${STRIPE_SUCCESS_URL}
+  cancel-url: ${STRIPE_CANCEL_URL}

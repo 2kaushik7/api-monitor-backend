@@ -8,6 +8,8 @@ import com.apimonitor.ambackend.model.User;
 import com.apimonitor.ambackend.repository.UserRepository;
 import com.apimonitor.ambackend.service.UserService;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -32,5 +34,21 @@ public class UserServiceImpl implements UserService {
         User saved = userRepository.save(user);
         log.info("User registered: {}", email);
         return saved;
+    }
+
+    @Override
+    public User upgradeToPro(String email, String stripeCustomerId) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + email));
+        user.setPlan("PRO");
+        user.setStripeCustomerId(stripeCustomerId);
+        User saved = userRepository.save(user);
+        log.info("User upgraded to PRO: {}", email);
+        return saved;
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
